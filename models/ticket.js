@@ -34,8 +34,12 @@ const ticketSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    seat: {
+    seatIndex: {
         type: [Number],
+        required: true
+    },
+    seat: {
+        type: [String],
         required: true
     },
     snack: {
@@ -78,7 +82,8 @@ function validateTicket(ticket) {
         showtime: Joi.string().required(),
         runtime: Joi.number().required(),
         theater: Joi.string().required(),
-        seat: Joi.array().items(Joi.number().required()).required(),
+        seatIndex: Joi.array().items(Joi.number().required()).required(),
+        seat: Joi.array().items(Joi.string().required()).required(),
         totalPrice: Joi.number().min(0).required(),
         ticketPrice: Joi.number().min(0).required(),
         snackPrice: Joi.number().min(0).required(),
